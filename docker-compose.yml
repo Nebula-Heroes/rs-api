@@ -1,0 +1,16 @@
+version: '3'
+services:
+  myapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8818:8818
+    environment:
+      - NOCODB_DB_CONNECTION_STRING=${NOCODB_DB_CONNECTION_STRING}
+    networks:
+      proxy:
+      
+networks:
+  proxy:
+    external: true

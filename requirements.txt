@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+unidecode
+sqlalchemy
+numpy
+# psycopg2
+psycopg2-binary
+scikit-learn
+pandas
+scipy
+nltk
+matplotlib
+mlxtend
