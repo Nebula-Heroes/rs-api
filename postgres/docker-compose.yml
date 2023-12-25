@@ -3,6 +3,6 @@ services:
   postgres:
     image: postgres:14.0
     environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_USER}
-      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=rs883366
+      - POSTGRES_PASSWORD=rs883366
+      - POSTGRES_DB=rs
