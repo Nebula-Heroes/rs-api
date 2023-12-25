@@ -6,3 +6,5 @@ services:
       - POSTGRES_USER=rs883366
       - POSTGRES_PASSWORD=rs883366
       - POSTGRES_DB=rs
+    ports:
+      - "5432:5432"
