@@ -7,7 +7,9 @@ services:
     ports:
       - 8818:8818
     environment:
-      - NOCODB_DB_CONNECTION_STRING=${NOCODB_DB_CONNECTION_STRING}
+      - POSTGRES_CONNECTION_STRING=${POSTGRES_CONNECTION_STRING}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_DB=${POSTGRES_DB}
     networks:
       proxy:
       
