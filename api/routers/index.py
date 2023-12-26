@@ -14,6 +14,7 @@ def is_user_in_db(user_id):
     conn = engine.connect()
     is_user_in_db = conn.execute(is_user_in_db)
     is_user_in_db = [row for row in is_user_in_db]
+    # print(is_user_in_db)
     conn.close()
     return len(is_user_in_db) > 0
 
@@ -31,7 +32,7 @@ def recommend_content_based_model(user_id: int = Query(0)):
 
 
 @router.get("/api/recommend_homepage_articles")
-def get_homepage_articles(user_id: int = Query(0)):
+def get_homepage_articles(user_id: int = Query()):
 
     if not is_user_in_db(user_id):
         return recommend_popularity_model()
@@ -42,7 +43,7 @@ def get_homepage_articles(user_id: int = Query(0)):
     return result
 
 @router.get("/api/recommend_followed_articles")
-def get_followed_articles(author_person_id: int = Query(0),
+def recommend_followed_articles(author_person_id: int = Query(),
                           limit: int = Query(5)):
     
     articles = articles_table.select().where(articles_table.c.authorpersonid == str(author_person_id)).limit(limit)
@@ -64,7 +65,7 @@ def get_followed_articles(author_person_id: int = Query(0),
     return articles
 
 @router.get("/api/recommend_liked_articles")
-def get_liked_articles(content_id: int = Query(0)):
+def recommend_liked_articles(content_id: int = Query(0)):
     
     result = content_based_worker.get_similar(contentid = content_id)
     print(result)
@@ -72,7 +73,7 @@ def get_liked_articles(content_id: int = Query(0)):
     return result
 
 @router.get("/api/recommend_related_articles")
-def get_related_articles(user_id: int = Query(0)):
+def recommend_related_articles(user_id: int = Query(0)):
         
     if not is_user_in_db(user_id):
         return recommend_popularity_model()

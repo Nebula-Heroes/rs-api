@@ -29,7 +29,7 @@ class ContentBasedWorker:
         return self.content_based_recommender_model.get_similar_items_to_item_profile(item_id = contentid, topn = topn)
 
     def recommend(self, user_id, topn = 10):
-        return self.content_based_recommender_model.recommend_items(person_id = user_id, user_profile = None,
+        return self.content_based_recommender_model.recommend_items(user_id = user_id, user_profile = None,
                                                                     ignore_interacted = True, topn = topn, verbose = True)
 
 class HybridWorker:
