@@ -40,6 +40,8 @@ def get_homepage_articles(user_id: int = Query()):
     result = hybrid_worker.recommend(user_id = user_id)
     result = json.loads(result.to_json(orient = 'records'))
 
+    for i in range(len(result)):
+        result[i]['contentId'] = str(result[i]['contentId'])
     return result
 
 @router.get("/api/recommend_followed_articles")
@@ -55,7 +57,7 @@ def recommend_followed_articles(author_person_id: int = Query(),
         return None
     for i in range(len(articles)):
         articles[i] = {
-            'contentId': articles[i][2],
+            'contentId': str(articles[i][2]),
             'authorPersonId': articles[i][3],
             'url': articles[i][9],
             'title': articles[i][10],
@@ -70,6 +72,8 @@ def recommend_liked_articles(content_id: int = Query(0)):
     result = content_based_worker.get_similar(contentid = content_id)
     print(result)
     result = json.loads(result.to_json(orient = 'records'))
+    for i in range(len(result)):
+        result[i]['contentId'] = str(result[i]['contentId'])
     return result
 
 @router.get("/api/recommend_related_articles")
@@ -80,6 +84,8 @@ def recommend_related_articles(user_id: int = Query(0)):
     
     result = content_based_worker.recommend(user_id = user_id)
     result = json.loads(result.to_json(orient = 'records'))
+    for i in range(len(result)):
+        result[i]['contentId'] = str(result[i]['contentId'])
     return result
 
 @router.get("/api/get_article")
