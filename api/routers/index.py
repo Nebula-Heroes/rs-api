@@ -22,6 +22,8 @@ def is_user_in_db(user_id):
 def recommend_popularity_model():
     result = popularity_worker.recommend()
     result = json.loads(result.to_json(orient = 'records'))
+    for i in range(len(result)):
+        result[i]['contentId'] = str(result[i]['contentId'])
     return result
 
 @router.get("/api/recommend_content_based_model")
