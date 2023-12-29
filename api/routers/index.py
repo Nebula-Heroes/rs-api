@@ -24,6 +24,15 @@ def recommend_popularity_model():
     result = json.loads(result.to_json(orient = 'records'))
     for i in range(len(result)):
         result[i]['contentId'] = str(result[i]['contentId'])
+        article = articles_table.select().where(articles_table.c.contentid == str(result[i]['contentId']))
+        conn = engine.connect()
+        article = conn.execute(article)
+        article = [row for row in article]
+        conn.close()
+        if len(article) == 0:
+            continue
+        article = article[0]
+        result[i]['thumbnails'] = article[13]
     return result
 
 @router.get("/api/recommend_content_based_model")
@@ -44,6 +53,16 @@ def get_homepage_articles(user_id: int = Query()):
 
     for i in range(len(result)):
         result[i]['contentId'] = str(result[i]['contentId'])
+        article = articles_table.select().where(articles_table.c.contentid == str(result[i]['contentId']))
+        conn = engine.connect()
+        article = conn.execute(article)
+        article = [row for row in article]
+        conn.close()
+        if len(article) == 0:
+            continue
+        article = article[0]
+        result[i]['thumbnails'] = article[13]
+
     return result
 
 @router.get("/api/recommend_followed_articles")
@@ -64,7 +83,8 @@ def recommend_followed_articles(author_person_id: int = Query(),
             'url': articles[i][9],
             'title': articles[i][10],
             # 'text': articles[i][11],
-            'lang': articles[i][12]
+            'lang': articles[i][12],
+            'thumbnails': articles[i][13]
         }
     return articles
 
@@ -76,6 +96,15 @@ def recommend_liked_articles(content_id: int = Query(0)):
     result = json.loads(result.to_json(orient = 'records'))
     for i in range(len(result)):
         result[i]['contentId'] = str(result[i]['contentId'])
+        article = articles_table.select().where(articles_table.c.contentid == str(result[i]['contentId']))
+        conn = engine.connect()
+        article = conn.execute(article)
+        article = [row for row in article]
+        conn.close()
+        if len(article) == 0:
+            continue
+        article = article[0]
+        result[i]['thumbnails'] = article[13]
     return result
 
 @router.get("/api/recommend_related_articles")
@@ -88,6 +117,15 @@ def recommend_related_articles(user_id: int = Query(0)):
     result = json.loads(result.to_json(orient = 'records'))
     for i in range(len(result)):
         result[i]['contentId'] = str(result[i]['contentId'])
+        article = articles_table.select().where(articles_table.c.contentid == str(result[i]['contentId']))
+        conn = engine.connect()
+        article = conn.execute(article)
+        article = [row for row in article]
+        conn.close()
+        if len(article) == 0:
+            continue
+        article = article[0]
+        result[i]['thumbnails'] = article[13]
     return result
 
 @router.get("/api/get_article")
@@ -113,7 +151,8 @@ def get_article(content_id: int = Query(0)):
         'url': article[9],
         'title': article[10],
         'text': article[11],
-        'lang': article[12]
+        'lang': article[12],
+        'thumbnails': article[13]
     }
     return data
 

@@ -4,7 +4,7 @@
 
 ## Getting Started
 ### Installation
-
+uvicorn api.main:app --host 0.0.0.0 --port 8818
 1. Clone the repository:
 
    ```bash
@@ -34,6 +34,7 @@ The API will be available at http://localhost:8818. You can use tools like cURL 
     ```
     Returns the article with the given id.
     Example: http://api.recsysproject.tech/api/get_article?content_id=2480569770059008227
+    Example: http://localhost:8818/api/get_article?content_id=2480569770059008227
 
 2. Add user interaction [Product]
     ```bash
@@ -49,6 +50,7 @@ The API will be available at http://localhost:8818. You can use tools like cURL 
 }
     Adds a user interaction to the database.
     Example: http://api.recsysproject.tech/api/interaction?user_id=29888888888&event_type=VIEW&content_id=4109618890343020064&session_id=7899999999999&user_agent=Mozilla%20SPAM%20LINH%20TINH&user_region=US&user_country=USA
+    Example: http://localhost:8818/api/interaction?user_id=29888888888&event_type=VIEW&content_id=4109618890343020064&session_id=7899999999999&user_agent=Mozilla%20SPAM%20LINH%20TINH&user_region=US&user_country=USA
 
 
 3. Get homepage articles [home]
@@ -57,27 +59,27 @@ The API will be available at http://localhost:8818. You can use tools like cURL 
     ```
     Returns the articles on the homepage.
     Example: http://api.recsysproject.tech/api/recommend_homepage_articles?user_id=-9150583489352258206
-
+    Example: http://localhost:8818/api/recommend_homepage_articles?user_id=-9150583489352258206
 4. Get recommended articles (By Like button) [Product]
     ```bash
     GET /api/recommend_liked_articles?content_id={content_id}
     ```
     Returns the recommended articles for the user.
     Example: http://api.recsysproject.tech/api/recommend_liked_articles?content_id=2480569770059008227
-
+    Example: http://localhost:8818/api/recommend_liked_articles?content_id=2480569770059008227
 5. Get recommended articles (By follow button) [Product]
     ```bash
     GET /api/recommend_followed_articles?author_person_id={author_person_id}
     ```
     Returns the recommended articles for the user.
     Example: http://api.recsysproject.tech/api/recommend_followed_articles?author_person_id=-2979881261169775358
-
+    Example: http://localhost:8818/api/recommend_followed_articles?author_person_id=-2979881261169775358
 6. Get recommended articles (related articles) [Product]
     ```bash
     GET /api/recommend_related_articles?user_id={user_id}
     ```
     Returns the recommended articles for the user.
     Example: http://api.recsysproject.tech/api/recommend_related_articles?userid=-9150583489352258206
-
+    Example: http://localhost:8818/api/recommend_related_articles?userid=-9150583489352258206
 
 

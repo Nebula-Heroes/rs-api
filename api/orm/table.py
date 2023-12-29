@@ -35,6 +35,8 @@ articles_table = Table(
     Column('url', String),
     Column('title', String),
     Column('text', String),
-    Column('lang', String(5))
+    Column('lang', String(5)),
+    Column('thumbnails', String)
+
 )
 metadata.create_all(engine)

@@ -21,7 +21,7 @@ conn.close()
 
 articles_df = pd.DataFrame(articles_data, columns=['timestamp', 'eventType', 'contentId', 'authorPersonId', 
                                                    'authorSessionId', 'authorUserAgent', 'authorRegion', 
-                                                   'authorCountry', 'contentType', 'url', 'title', 'text', 'lang'],)
+                                                   'authorCountry', 'contentType', 'url', 'title', 'text', 'lang', 'thumbnails'],)
 articles_df = change_type_articles(articles_df)
 
 interactions_df = pd.DataFrame(interactions_data, columns=['id', 'timestamp', 'eventType', 'contentId', 'personId', 'sessionId', 'userAgent', 'userRegion', 'userCountry'])
